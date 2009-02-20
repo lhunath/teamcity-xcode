@@ -1,28 +1,24 @@
-/*
- * Copyright (c) 2008 Oliver Jones.  See LICENSE file for details.
- */
-
 package com.deeperdesign.teamcity.xcodeplugin.agent;
 
 import com.deeperdesign.teamcity.xcodeplugin.common.PluginConstants;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import jetbrains.buildServer.RunBuildException;
-import jetbrains.buildServer.agent.AgentRunningBuild;
-import jetbrains.buildServer.agent.runner.AbstractProgramCommandLine;
+
+import jetbrains.buildServer.agent.runner.*;
 
 /**
  *
  * @author oliver
  */
-public class XCodeCommandLine extends AbstractProgramCommandLine {
+public class XCodeCommandLineBuildService extends CommandLineBuildService {
   
-    public XCodeCommandLine(final AgentRunningBuild build) {
-        super(build);
+
+    public ProgramCommandLine makeProgramCommandLine() {
+        return new SimpleProgramCommandLine(getBuild(), getExecutablePath(), getArguments());
     }
 
-    public List<String> getArguments() throws RunBuildException {
+    protected List<String> getArguments() {
         List<String> arguments = new Vector<String>();
         final Map<String, String> params = getBuild().getRunnerParameters();
         
@@ -62,7 +58,11 @@ public class XCodeCommandLine extends AbstractProgramCommandLine {
         }
         
         if(parameterExists(params, PluginConstants.SETTINGS_XCODE_BUILD_ACTION)) {
-            arguments.add(params.get(PluginConstants.SETTINGS_XCODE_BUILD_ACTION));
+            String action = params.get(PluginConstants.SETTINGS_XCODE_BUILD_ACTION).trim();
+            String[] actions = action.split(" ");
+            for(int i = 0; i < actions.length; i++) {
+                arguments.add(actions[i]);
+            }
         }
         
         if(parameterExists(params, PluginConstants.SETTINGS_XCODE_BUILD_SETTINGS)) {
@@ -83,7 +83,7 @@ public class XCodeCommandLine extends AbstractProgramCommandLine {
         return arguments;
     }
 
-    public String getExecutablePath() throws RunBuildException {
+    protected String getExecutablePath() {
         return "xcodebuild";
     }
  
@@ -97,7 +97,12 @@ public class XCodeCommandLine extends AbstractProgramCommandLine {
 
     private static List<String> splitSettings(String settings) {
         List<String> list = new Vector<String>();
-        
+
+        String[] setting = settings.split("\n");
+            for(int i = 0; i < setting.length; i++) {
+                list.add(setting[i]);
+            }
+
         return list;
     }    
 }

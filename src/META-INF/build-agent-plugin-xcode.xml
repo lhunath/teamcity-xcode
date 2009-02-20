@@ -6,7 +6,5 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans default-autowire="constructor">
-  <!--bean name="XCodeExtension" class="com.deeperdesign.teamcity.xcodeplugin.agent.XCodeExtension" /-->
-  <bean name="XCodeRunner" class="com.deeperdesign.teamcity.xcodeplugin.agent.XCodeRunner" />
-  <bean name="XCodeDataProcessor" class="com.deeperdesign.teamcity.xcodeplugin.agent.XCodeDataProcessor" />
+  <bean name="XCodeCommandLineBuildServiceFactory" class="com.deeperdesign.teamcity.xcodeplugin.agent.XCodeCommandLineBuildServiceFactory"/>
 </beans>
