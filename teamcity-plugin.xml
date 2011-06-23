@@ -4,7 +4,7 @@
   <info>
     <name>XCode</name>
     <display-name>Plugin for building XCode Projects</display-name>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
   </info>
   <deployment use-separate-classloader="false" />
 </teamcity-plugin>
