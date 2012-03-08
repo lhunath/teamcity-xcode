@@ -3,7 +3,7 @@ TeamCity XCode Integration
 
 xcodebuild Runner
 -----------------
-This is a plugin for TeamCity 6.0.3 that provides a build agent runner that
+This is a plugin for TeamCity 7.0 that provides a build agent runner that
 invokes the xcodebuild command on MacOS X build agent hosts.
 
 Installation
@@ -14,3 +14,8 @@ for the user running the TeamCity server.
 
 Once the zip file has been placed in the plugin directory, restart the TeamCity
 server.
+
+Build
+-----
+To build this plugin in the IntelliJ IDEA, use must copy the devPackage folder
+from the TeamCity intallation directory to the teamcity-xcode project folder.
