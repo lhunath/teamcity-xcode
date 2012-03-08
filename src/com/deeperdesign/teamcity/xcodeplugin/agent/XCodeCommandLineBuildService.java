@@ -20,7 +20,7 @@ public class XCodeCommandLineBuildService extends BuildServiceAdapter {
 
     protected List<String> getArguments() {
         List<String> arguments = new Vector<String>();
-        final Map<String, String> params = getBuild().getRunnerParameters();
+        final Map<String, String> params = this.getRunnerParameters();
 
         if(parameterExists(params, PluginConstants.SETTINGS_XCODE_PROJECT)) {
             arguments.add("-project");
